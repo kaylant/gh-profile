@@ -1,0 +1,48 @@
+/* Page at large */
+
+* {
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+/* Global continer */
+
+#container {
+	margin: auto;
+	max-width: 90%;
+	border: 1px solid black;
+}
+
+.align-children {
+	font-size: 0;
+}
+
+.align-children > * {
+	display: inline-block;
+	vertical-align: top;
+	font-size: medium;
+}
+
+/* Right Column */
+
+#right-col {
+	border: 1px solid black;
+	display: inline-block;
+	width: 40%;
+}
+
+/* Left Column */
+
+#left-col {
+	border: 1px solid black;
+	display: inline-block;
+	width: 59%;
+	height: 140px;
+}
+
+#profileFromJS {
+	border: 1px solid black;
+	display: block;
+	width: 30%;
+	color: black;
+}
