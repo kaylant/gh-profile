@@ -90,7 +90,7 @@ body
     font-size: 26px
     line-height: 30px
     font-weight: bold
-    margin: 10px 0
+    margin: 10px 0 0 0
 
   .login
     font-size: 20px
@@ -105,7 +105,6 @@ body
     border-bottom: 1px solid
     border-color: #eee
     margin-top: 15px
-    margin-bottom: 15px
     width: 230px
 
     p 
@@ -113,8 +112,13 @@ body
       line-height: 16px
       margin: 10px 0
 
+      .octicon
+        color: #999
+        margin-right: 8px
+
       a
         color: $secondary-color
+        text-decoration: none
 
   .followsStyle
     border-bottom: 1px solid
@@ -122,6 +126,8 @@ body
     display: flex
     flex-direction: row
     width: 230px
+    padding-top: 12px
+    padding-bottom: 8px
 
     .boxes
       flex: 1
@@ -132,11 +138,61 @@ body
         font-weight: bold
         font-size: 28px
         color: $secondary-color
-        display: inline-block
+        display: block
         margin: 0
+
+      .smallText
+        color: #767676
+        font-size: 11px
 
 #right-col
   display: inline-block
   width: 60%
-  border: 2px solid black
   vertical-align: top
+
+  .repoObjStyle
+    border-bottom: 1px solid
+    border-color: #eee
+    position: relative
+    padding-top: 30px
+    padding-bottom: 30px
+
+    h2
+      font-size: 20px
+      color: $secondary-color 
+      margin: 0 0 8px
+      line-height: 1.2
+      display: block
+
+    .description
+      max-width: 550px
+      margin-top: 8px
+      margin-bottom: 0
+      font-size: 14px
+      color: #666 
+      display: block
+
+    .updated
+      font-size: 13px
+      color: #888
+
+    .listStatsStyle
+      margin-top: 6px
+      position: absolute
+      top: 15px
+      right: 0
+      float: right
+
+      .language    
+        font-size: 12px
+        font-weight: bold
+        color: #888
+        display: inline-block
+
+      .stats
+        display: inline-block
+        margin-left: 8px
+        color: #888
+        text-decoration: none
+        font-size: 12px
+        font-weight: bold
