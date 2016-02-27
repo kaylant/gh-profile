@@ -1,5 +1,4 @@
 // console.log($)
-// var key = '?access_token=dd41997d9a91b6167e894d9421ff014f810163e7'
 var baseURL = 'https://api.github.com/users/'
 var profileURL = baseURL + 'kaylant'
 var repoURL = profileURL + '/repos'
@@ -27,8 +26,22 @@ var generateAllReposHTML = function(jsonData) {
 
 // generate HTML
 var generateProfileHTML = function(dataObj) {
-	var htmlString = "<div class='profileStyle'>"
-		htmlString +=    "<p> Name: " + dataObj.name + "</p>"
+	console.log(dataObj)
+	var htmlString = "<div class='nameLoginStyle'>"
+		htmlString +=    "<img class='avatarImg' src='" + dataObj.avatar_url + "'/>"
+		htmlString +=    "<h1 class='name'>" + dataObj.name + "</h1>"
+		htmlString +=	 "<p class='login'>" + dataObj.login + "</p>"
+		htmlString += "</div>"
+		htmlString += "<div class='personalDetailsStyle'>"
+		htmlString +=    "<p class='location' class='octicon octicon-location'>" + dataObj.location + "</p>"
+		htmlString +=    "<p class='email'><a href='mailto:" + dataObj.email + "'>kaylan@mg.kaylansmith.com</a></p>"
+		htmlString +=    "<p class='website'><a href='" + dataObj.blog + "'>http://kaylansmith.com</a></p>"
+		htmlString +=    "<p class='joinedDate'>Joined on " + dataObj.created_at + "</p>"
+		htmlString += "</div>"
+		htmlString += "<div class='followsStyle'>"
+		htmlString +=    "<div class='boxes'><h3>" + dataObj.followers + "</h3></div>"
+		htmlString +=    "<div class='boxes'><h3>" + dataObj.public_gists + "</h3></div>"
+		htmlString +=    "<div class='boxes'><h3>" + dataObj.following + "</h3></div>"
 		htmlString += "</div>"
 	profileContainer.innerHTML = htmlString
 }
