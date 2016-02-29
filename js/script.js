@@ -1,4 +1,5 @@
 // console.log($)
+// var apiKey = ""
 var baseURL = 'https://api.github.com/users/'
 var profileURL = baseURL + 'kaylant'
 var repoURL = profileURL + '/repos'
@@ -64,21 +65,23 @@ var generateRepoHTML = function(repoObj) {
 //search 
 
 var search = function(event) {
+	var inputEl = event.target
 	if(event.keyCode === 13) {
-		// alert("gross!")
-		var inputEl = event.target 
-		var query = inputEl.value
-		location.hash = query
+		// alert("gross!") 
+		var userName = inputEl.value
 		inputEl.value = ""
+		location.hash = userName
 	}	
 }
 
 var doSearch = function(query){
 	// alert("gross!")
-    var profileURL = baseURL + query
+	var profileURL = baseURL + query
+    // var profileURL = baseURL + query + "?access_token=" + apiKey
     var userNamePromise = $.getJSON(profileURL)
     userNamePromise.then(generateProfileHTML)
     var repoURL = baseURL + query + '/repos'
+    // var repoURL = baseURL + query + '/repos' + "?access_token=" + apiKey
     var userRepoPromise = $.getJSON(repoURL)
     userRepoPromise.then(generateAllReposHTML)
 }
@@ -86,12 +89,25 @@ var doSearch = function(query){
 var controller = function(){
     var userName = location.hash.substring(1)
     doSearch(userName)
+    if (userName === "home") {
+    	showHomeScreen()
+    }
+    else if (userName === "settings") {
+    	profileContainer.innerHTML = "welcome to settings"
+    	repoContainer.innerHTML = "nothing here"
+    }
+    else doSearch(userName)
+}
+
+var showHomeScreen = function() {
+	profileContainer.innerHTML = "home stuffs"
+	repoContainer.innerHTML = "repos stuffs"
 }
 
 inputEl.addEventListener('keydown',search)
 window.addEventListener('hashchange',controller)
-doSearch(location.hash.substring(1))
+if (location.hash === '') location.hash = "kaylant"
+else controller()
 
-
-githubApiPromise(profileURL).then(generateProfileHTML)
-githubApiPromise(repoURL).then(generateAllReposHTML)
+// githubApiPromise(profileURL).then(generateProfileHTML)
+// githubApiPromise(repoURL).then(generateAllReposHTML)
