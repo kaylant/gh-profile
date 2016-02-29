@@ -51,7 +51,7 @@ var generateRepoHTML = function(repoObj) {
 	var htmlString =  "<div class='repoObjStyle'>"
 	    htmlString +=    "<h2>" + repoObj.name + "</h2>"
 	    htmlString +=    "<p class='description'>" + repoObj.description + "</p>"
-	    htmlString +=    "<p class='updated'>Updated <time datetime='" + repoObj.updated_at + "'></time>" + repoObj.updated_at + "</p>"
+	    htmlString +=    "<p class='updated'>Updated <time datetime='" + repoObj.updated_at + "'is=''></time>" + repoObj.updated_at + "</p>"
 	    htmlString +=    "<div class='listStatsStyle'>"
 	    htmlString +=    	"<p class='language'>" + repoObj.language + "</p>"
 	    htmlString +=    	"<p class='stats'><span class='octicon octicon-star'></span>" + repoObj.stargazers_count + "</p>"
@@ -67,18 +67,18 @@ var search = function(event) {
 	if(event.keyCode === 13) {
 		// alert("gross!")
 		var inputEl = event.target 
-		var userName = inputEl.value
+		var query = inputEl.value
+		location.hash = query
 		inputEl.value = ""
-		location.hash = userName
 	}	
 }
 
-var doSearch = function(userName){
+var doSearch = function(query){
 	// alert("gross!")
-    var profileURL = baseURL + userName 
+    var profileURL = baseURL + query
     var userNamePromise = $.getJSON(profileURL)
     userNamePromise.then(generateProfileHTML)
-    var repoURL = baseURL + userName + '/repos'
+    var repoURL = baseURL + query + '/repos'
     var userRepoPromise = $.getJSON(repoURL)
     userRepoPromise.then(generateAllReposHTML)
 }
@@ -90,6 +90,8 @@ var controller = function(){
 
 inputEl.addEventListener('keydown',search)
 window.addEventListener('hashchange',controller)
+doSearch(location.hash.substring(1))
+
 
 githubApiPromise(profileURL).then(generateProfileHTML)
 githubApiPromise(repoURL).then(generateAllReposHTML)
