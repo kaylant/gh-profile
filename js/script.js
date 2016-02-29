@@ -39,7 +39,7 @@ var generateProfileHTML = function(dataObj) {
 		htmlString +=    "<p class='joinedDate'><span class='octicon octicon-clock'></span>Joined on " + dataObj.created_at + "</p>"
 		htmlString += "</div>"
 		htmlString += "<div class='followsStyle'>"
-		htmlString +=    "<div class='boxes'><h3>" + dataObj.followers + "</h3><span class='smallText'>Follower</span></div>"
+		htmlString +=    "<div class='boxes'><h3>" + dataObj.followers + "</h3><span class='smallText'>Followers</span></div>"
 		htmlString +=    "<div class='boxes'><h3>" + dataObj.public_gists + "</h3><span class='smallText'>Starred</span></div>"
 		htmlString +=    "<div class='boxes'><h3>" + dataObj.following + "</h3><span class='smallText'>Following</span></div>"
 		htmlString += "</div>"
@@ -64,9 +64,9 @@ var generateRepoHTML = function(repoObj) {
 //search 
 
 var search = function(event) {
-	var inputEl = event.target 
 	if(event.keyCode === 13) {
 		// alert("gross!")
+		var inputEl = event.target 
 		var userName = inputEl.value
 		inputEl.value = ""
 		location.hash = userName
